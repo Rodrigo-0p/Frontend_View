@@ -1,0 +1,111 @@
+.contacto {
+  max-height: 640px;
+  position: relative;
+}
+
+.primary-btn-contacto{
+  font-family: var(--font-decor);
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #5b5252;
+  background: linear-gradient(-45deg, #001f5c 0%, #ffffff8a 60%, #ff5d5d8c 55%, #ffffffad 125%);
+}
+
+.contacto-details {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  box-shadow: 0 0 25px 5px rgba(0, 0, 0, .2);
+  background-color: #ffffffe8;
+}
+
+.contacto-details__item {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-text);
+  color: var(--gray-800);
+}
+
+.contacto-details__item:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.contacto-details__icon {
+  width: 40px;
+  margin-right: 8px;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: #040404;
+}
+
+.contacto-details__link {
+  color: var(--gray-800);
+}
+
+.contacto__map {
+  width: 100%;
+  min-height: 640px;
+  border: none;
+  filter: brightness(.9);
+}
+
+
+@media screen and (min-width: 320px) {
+  .contacto-details {
+    max-width: 312px;
+    width: calc(100% - 20px);
+    padding: 1rem;
+  }
+
+  .contacto-details__item {
+    font-size: 1rem;
+  }
+  .contacto-details__icon{
+    width:30px
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .contacto-details {
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 560px) {
+  .contacto-details {
+    max-width: 555px !important;
+  }
+  .contacto-details__icon {
+    width: 36px;
+  }
+  .contacto-details {
+    padding: 1.5rem;
+  }
+  .contacto-details__item {
+    font-size: 1.125rem;
+  }
+}
+
+.ant-float-btn-circle {
+  height: 45px;
+}
+
+.ant-float-btn{
+  width: 45px;
+}
+
+.ant-float-btn .ant-float-btn-body .ant-float-btn-content .ant-float-btn-icon{
+  width: 22px;
+  font-size: 23px;
+}
+
+.ant-float-btn-group-circle .ant-float-btn-circle:not(:last-child) .ant-float-btn-body{
+  width: 45px;
+}
+
+.ant-float-btn-primary .ant-float-btn-body {
+  background-color: #365a8d;
+}
