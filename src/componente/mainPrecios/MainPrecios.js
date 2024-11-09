@@ -24,9 +24,7 @@ const MainPrecios = memo(() => {
             let data          = JSON.parse(xhr.responseText)
             let imageUrl      = `${process.env.REACT_APP_IMAGE_URL}precios-img.${data.extencion_img}`;
             let imageUrlFondo = `${process.env.REACT_APP_IMAGE_URL}precios-fondo-img.${data.extencion_img_fon}`;
-
-            console.log(data.detalle)
-
+            
             setRowPrecios(data.detalle)
             document.getElementById('precios-empresa').innerHTML = data.nomb_empresa;
             document.getElementById('precios-title').innerHTML   = data.titulo;

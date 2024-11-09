@@ -109,3 +109,7 @@
 .ant-float-btn-primary .ant-float-btn-body {
   background-color: #365a8d;
 }
+
+.ant-float-btn-primary .ant-float-btn-body:hover{
+  background-color: #365a8d;
+}

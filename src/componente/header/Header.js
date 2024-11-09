@@ -10,13 +10,33 @@ const Header = memo(() => {
                   {idref:"servicio"  , nameService:"Servicios"    },
                   {idref:"precios"   , nameService:"Precios"      },
                   {idref:"contacto"  , nameService:"Contacto"     }]
+  
 
   React.useEffect(()=>{
-    const headerElement = document.querySelector('.header');
-    const imgUrl = process.env.REACT_APP_IMAGE_URL+'header-img.jpg';
-    headerElement.style.backgroundImage = `url('${imgUrl}')`;
+    getData()
   },[])
 
+  const getData = async ()=>{
+    let url = process.env.REACT_APP_DATA_URL+'CONFIGUR.txt';
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET',url,true);
+    try {
+      xhr.onload = ()=> {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            let data = JSON.parse(xhr.responseText)
+            document.getElementById('configur-title').innerHTML     = data.titulo;
+            const headerElement = document.querySelector('.header');
+            const imgUrl = process.env.REACT_APP_IMAGE_URL+'configur-img.jpg';
+            headerElement.style.backgroundImage = `url('${imgUrl}')`;
+        } else {
+          document.getElementById('configur-title').innerHTML     = '404';
+        }
+      };
+      xhr.send();
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const opneMenu = ()=>{
     
     const navContainer = document.querySelector('.nav-container');
@@ -78,15 +98,7 @@ const Header = memo(() => {
           </div>
 
           <div className='header__content-intro'>
-            <span className="content-intro__welcome">
-              {/* Bienvenidos a  Menayo Barber */}
-            </span>
-            <h2 className="content-intro__title">
-              Elevamos tu estilo con profesionalismo 
-            </h2>
-            <p className="content-intro__message">
-              {/* Brindamos autoestima y calidad a los clientes. */}
-            </p>
+            <h2 id="configur-title" className="content-intro__title"/>
             <a href="#servicio" className="primary-btn">
               Nuestros Servicio
             </a>

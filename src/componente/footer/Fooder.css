@@ -62,11 +62,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px;
+  padding: 6px 6px;
   border-radius: 50%;
   border: 1px solid var(--white);
   transition: all ease-in-out .4s;
   cursor: pointer;
+}
+
+.social-media__item > a {
+  padding: 0px 2px;
 }
 
 .social-media__item img {

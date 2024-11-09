@@ -52,9 +52,9 @@ const MainServicios = memo(() => {
       <div className="servicio-content">
         <Carousel autoplay autoplaySpeed={3000} >
           {             
-            rowServicio.map((items)=>(
-              <div className='servicio__item-content' >
-                <div key={items.title} className="servicio__item">
+            rowServicio.map((items,indice)=>(
+              <div key={indice} className='servicio__item-content' >
+                <div className="servicio__item">
                   <h4 className="servicio__item-title">{items.titulo}</h4> 
                   <p className="servicio__item-description">{items.descripcion}</p>
                 </div>
@@ -64,35 +64,8 @@ const MainServicios = memo(() => {
           }
         </Carousel>
         
-          {/* <ul className="servicio__list">
-            {             
-              rowServicio.map((items)=>(                        
-                <li key={items.title} className="servicio__item">
-                  <h4 className="servicio__item-title">{items.titulo}</h4> 
-                  <p className="servicio__item-description">{items.descripcion}</p>
-                </li>
-              ))
-            }
-          </ul>*/}
        </div>
     </section>
-
-    {/* <div id="servicio" className="servicio" >
-      <Carousel autoplay>
-        <div>
-          <h3 style={contentStyle}>1</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>2</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>3</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>4</h3>
-        </div>
-      </Carousel>
-    </div> */}
   </>
   );
 });

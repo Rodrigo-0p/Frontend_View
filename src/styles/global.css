@@ -171,3 +171,28 @@ html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+a > button.ant-float-btn{
+ margin-bottom: 10px;
+}
+
+.HomeFloatButton{
+  margin: 75px -5px;
+}
+.HomeFloatBackTop{
+  margin: 20px -10px;
+}
+
+.ant-float-btn-default .ant-float-btn-body{
+  background-color: #677e9d
+}
+.ant-float-btn-default .ant-float-btn-body:hover {
+  background-color: #677e9d;
+}
+
+.ant-float-btn-default .ant-float-btn-body .ant-float-btn-content .ant-float-btn-icon{
+  color: aliceblue;
+}
+.ant-float-btn-circle .ant-float-btn-body{
+  border-radius: 40%;
+}

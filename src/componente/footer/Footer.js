@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import Facebook        from "../../assets/icons/facebook.svg";
-import twitter         from "../../assets/icons/twitter.svg";
+import twitter         from "../../assets/icons/twitterx.svg";
 import instagram       from "../../assets/icons/instagram.svg";
+import whatsapp        from "../../assets/icons/whatsapp.svg";
 
 import "./Fooder.css";
 
@@ -14,6 +15,30 @@ const Footer = memo(() => {
     {idref:"precios"      , nameService:"Precios"      },
     {idref:"contacto"     , nameService:"Contacto"     },
    ]
+
+   const [rowRedes, setRedes ] = React.useState([])
+
+   React.useEffect(()=>{
+     getData()
+   },[])
+ 
+   const getData = async ()=>{
+     let url = process.env.REACT_APP_DATA_URL+'CONFIGUR.txt';
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET',url,true);
+     try {
+       xhr.onload = ()=> {
+         if (xhr.status >= 200 && xhr.status < 300) {
+            let data = JSON.parse(xhr.responseText)
+            setRedes(data.detalle)
+         }
+       };
+       xhr.send();
+     } catch (error) {
+       console.log(error)
+     }
+  }
+ 
 
   return (
     <footer className="footer">
@@ -28,15 +53,43 @@ const Footer = memo(() => {
             es cuando se conoce al peluquero adecuado.
           </p>
           <ul className="footer__social-media">
-            <li className="primary-btn-social social-media__item">
-              <img src={Facebook} alt="facebook"/>
-            </li>
-            <li className="primary-btn-social social-media__item">
-              <img src={twitter} alt="twitter" />
-            </li>
-            <li className="primary-btn-social social-media__item">
-              <img src={instagram} alt="instagram" />
-            </li>
+          {
+            rowRedes.map((items,indice)=>(
+                items.cod_redes_sociales === 1 && items.activo === 'S'
+              ? 
+                ( <li key={indice} className="primary-btn-social social-media__item">
+                    <a href={items.url} target="_blank" rel="noopener noreferrer">
+                      <img src={Facebook} alt="facebook"/>
+                    </a>
+                  </li>                  
+                )
+              : items.cod_redes_sociales === 2 && items.activo === 'S'
+              ? 
+                ( <li key={indice} className="primary-btn-social social-media__item">
+                    <a href={items.url} target="_blank" rel="noopener noreferrer">
+                      <img src={instagram} alt="instagram"/>
+                    </a>
+                  </li>       
+                )
+              : items.cod_redes_sociales === 3 && items.activo === 'S'
+              ? 
+                ( <li key={indice} className="primary-btn-social social-media__item">
+                    <a href={items.url} target="_blank" rel="noopener noreferrer">
+                      <img src={twitter}   alt="twitter" />
+                    </a>
+                  </li>
+                )
+              : items.cod_redes_sociales === 4 && items.activo === 'S'
+              ? 
+                ( <li key={indice} className="primary-btn-social social-media__item">
+                    <a href={items.url} target="_blank" rel="noopener noreferrer">
+                      <img src={whatsapp}  alt="whatsapp"/>
+                    </a>
+                  </li>
+                )
+              : null
+            ))
+          }
           </ul>
         </div>
         </div>
