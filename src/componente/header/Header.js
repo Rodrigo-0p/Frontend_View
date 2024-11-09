@@ -14,6 +14,7 @@ const Header = memo(() => {
 
   React.useEffect(()=>{
     getData()
+    consultaDatos()
   },[])
 
   const getData = async ()=>{
@@ -37,6 +38,33 @@ const Header = memo(() => {
       console.log(error)
     }
   }
+  const consultaDatos = async() =>{
+    let url = process.env.REACT_APP_DATA_URL+'EMPRESA.txt'
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET',url,true);
+      try {
+        xhr.onload = ()=> {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            let data = JSON.parse(xhr.responseText)
+    
+            let logitud = data.empresa.length
+            let result  = logitud / 2
+            let valor1  = data.empresa.substring(0,result)
+            let valor2  = data.empresa.substring(result,logitud)
+            document.getElementById('name_empresa_1').innerHTML = valor1;
+            document.getElementById('name_empresa_2').innerHTML = valor2;
+            let imagen = document.querySelector('.header-menu-logo');
+            imagen.src = process.env.REACT_APP_IMAGE_URL+`empresa-img.${data.extencion_img}`;
+          }else{
+            document.getElementById('name_empresa_1').innerHTML  = '404';
+            document.getElementById('name_empresa_2').innerHTML  = '404';
+          }
+        };
+        xhr.send();
+      } catch (error) {
+        console.log(error)
+      }
+    };
   const opneMenu = ()=>{
     
     const navContainer = document.querySelector('.nav-container');
@@ -69,8 +97,9 @@ const Header = memo(() => {
             
             <h1 className="header__title">
               <div className='header__title_menu'>
-                <img src={ process.env.REACT_APP_IMAGE_URL+'logoEmpresa.jpg'}  className='header-menu-logo' alt="Menayo Barber"/>
-                <a className='name_empresa_1' href="#home" >Menayo<div className='name_empresa_2'>Barber</div></a>                
+                <img  className='header-menu-logo'/>
+                <div id='name_empresa_1' className='name_empresa_1'></div>
+                <div id='name_empresa_2' className='name_empresa_2'></div>                
               </div>
             </h1>
             

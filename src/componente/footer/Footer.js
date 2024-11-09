@@ -20,6 +20,7 @@ const Footer = memo(() => {
 
    React.useEffect(()=>{
      getData()
+     cargaDatos()
    },[])
  
    const getData = async ()=>{
@@ -38,6 +39,27 @@ const Footer = memo(() => {
        console.log(error)
      }
   }
+  const cargaDatos = async () => {
+    let url = process.env.REACT_APP_DATA_URL+'EMPRESA.txt'
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET',url,true);
+    try {
+      xhr.onload = ()=> {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          let data = JSON.parse(xhr.responseText)
+        document.getElementById('empresa').innerHTML = data.empresa;
+        document.getElementById('empresab').innerHTML = data.empresa + " @  2024. todos los derechos reservados. ";
+        document.getElementById('descripcion').innerHTML = data.descripcion;
+        }else{
+          document.getElementById('empresa').innerHTML  = '404';
+          document.getElementById('descripcion').innerHTML  = '404';
+        }
+      };
+      xhr.send();
+    } catch (error) {
+      console.log(error)
+    }
+  };
  
 
   return (
@@ -45,12 +67,12 @@ const Footer = memo(() => {
       <div className="footer__info">
         <div className="footer__info-container">
         <div className="footer__info-content">
-          <h4 className="footer__info-title">
-            {process.env.REACT_APP_TITULO}
+          <h4 className="footer__info-title" id='empresa'>
+            {/* {process.env.REACT_APP_TITULO} */}
           </h4>
-          <p className="footer__content-description">
-            El componente principal de un buen corte
-            es cuando se conoce al peluquero adecuado.
+          <p className="footer__content-description" id='descripcion'>
+            {/* El componente principal de un buen corte
+            es cuando se conoce al peluquero adecuado. */}
           </p>
           <ul className="footer__social-media">
           {
@@ -97,9 +119,7 @@ const Footer = memo(() => {
 
       <div className="footer__copyright">
         <div className="footer__copyright-container">
-          <p className="copyright">
-           {process.env.REACT_APP_TITULO} &copy; 2024. todos los derechos reservados.
-          </p>
+          <p className="copyright" id='empresab'>&copy; 2024. todos los derechos reservados.</p>
           
           <nav className="footer__nav">
             <ul className="footer__nav-list">
