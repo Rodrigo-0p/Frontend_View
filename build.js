@@ -12,6 +12,7 @@ build({
   loader: {
     '.js': 'jsx', // Configuración para cargar archivos .js como JSX
     '.css': 'css',
+    '.jsx': 'jsx', 
     '.png': 'file', // Configuración para cargar archivos .png como archivos
     '.ttf': 'file', // Configuración para cargar archivos .ttf como archivos
     '.svg': 'file', // Configuración para cargar archivos .svg como archivos
